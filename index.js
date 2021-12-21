@@ -10,7 +10,7 @@ const SRC_DIR = path.resolve(__dirname, "src");
 const outputPath = path.join(SRC_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
- 
+
 const teamArray = [];
 
 
@@ -113,15 +113,15 @@ const anotherOne = [
 
 //starting function - begins with manager because each team will always have a manager 
 function init() {
-        //starts with the manager function
-        managerPromt();
+    //starts with the manager function
+    managerPromt();
 }
 
 
 //function that will promt the user to select the next type of employee they are adding 
 function next() {
     inquirer.prompt(anotherOne).then((response) => {
-        
+
         console.log(response);
         switch (response.nextEmployee) {
             case 'Engineer':
@@ -158,12 +158,12 @@ function managerPromt() {
 function engineerPromt() {
     inquirer.prompt(engineerQuestions).then((response) => {
 
-        let name = response. engiName;
+        let name = response.engiName;
         let id = response.engiID;
         let email = response.engiEmail;
         let github = response.github;
         // creats an object for this manager 
-        const engineer = new Engineer (name, id, email, github);
+        const engineer = new Engineer(name, id, email, github);
 
         teamArray.push(engineer);
         console.log(teamArray);
@@ -176,12 +176,12 @@ function engineerPromt() {
 function internPromt() {
     inquirer.prompt(internQuestions).then((response) => {
 
-        let name = response. internName;
+        let name = response.internName;
         let id = response.internID;
         let email = response.internEmail;
         let school = response.school;
 
-        const intern = new Intern (name, id, email, school);
+        const intern = new Intern(name, id, email, school);
 
         teamArray.push(intern);
         console.log(teamArray);
@@ -193,11 +193,11 @@ function internPromt() {
 
 //function to make the file 
 function makeTeam() {
-fs.writeFile(outputPath, render(teamArray), function(err) {
-if (err) { 
-    return console.log(err)
-}
-})
+    fs.writeFile(outputPath, render(teamArray), function (err) {
+        if (err) {
+            return console.log(err)
+        }
+    })
 
 }
 
